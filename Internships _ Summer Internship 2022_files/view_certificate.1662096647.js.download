@@ -1,0 +1,27 @@
+$(document).ready(function () {
+
+    $('.copy_link_url').click(function () {
+        var copy_text = $("<input>");
+        $(this).append(copy_text);
+        copy_text.val($('.copy_link_url').attr("data-link")).select();
+        document.execCommand("copy");
+        general_toast("Link copied");
+        copy_text.remove();
+        $.ajax('/student/certificate_click/' + certificate_id + '/' + certificate_key + '/copylink', {
+            success: function () {
+
+            },
+            error: function () {
+
+            },
+            type: "get"
+        });
+        return false;
+    });
+    var downlinkMax = 100;
+    if (typeof navigator.connection !== 'undefined' && navigator.connection !== null) {
+        var downlinkMax = navigator.connection.downlinkMax;
+    }
+
+});
+
